@@ -34,6 +34,7 @@ Additionally, can we:
 
 ## 📂 Project Structure
 
+```
 bike-sharing-analysis-r/
 ├── code/ # R script with questions and analysis (Q1–Q15)
 │ └── analysis.R
@@ -45,4 +46,5 @@ bike-sharing-analysis-r/
 │ ├── ProjectFinal.Rmd
 │ └── ProjectFinal.html
 └── README.md # Project description and instructions
+```
 
