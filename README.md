@@ -34,4 +34,15 @@ Additionally, can we:
 
 ## 📂 Project Structure
 
+bike-sharing-analysis-r/
+├── code/ # R script with questions and analysis (Q1–Q15)
+│ └── analysis.R
+├── data/ # Source dataset (e.g., day.csv)
+│ └── day.csv
+├── plots/ # Visual output (e.g., boxplot image)
+│ └── cntweather.jpg
+├── report/ # R Markdown source and generated HTML
+│ ├── ProjectFinal.Rmd
+│ └── ProjectFinal.html
+└── README.md # Project description and instructions
 
