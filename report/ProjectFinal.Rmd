@@ -1,0 +1,86 @@
+---
+title: "Bike Sharing Project"
+author: "Jacob Paul"
+date: "2024-10-12"
+output: html_document
+---
+
+## 📌 Project Goal
+
+This report replicates the steps in Question 13-C using R Markdown for reproducibility. It includes data loading, transformations, linear regression, and summary interpretation on the bike-sharing dataset.
+
+---
+
+## 🔹 Load the Data
+
+```{r}
+day <- read.csv("data/day.csv")
+head(day)
+```
+
+---
+
+## 🔹 Convert Numerical to Categorical Labels
+
+### Convert `season` from numeric to descriptive labels
+
+```{r}
+day$season <- as.character(day$season)
+day$season[day$season == "1"] <- "springer"
+day$season[day$season == "2"] <- "summer"
+day$season[day$season == "3"] <- "fall"
+day$season[day$season == "4"] <- "winter"
+print(unique(day$season))
+```
+
+### Convert `weathersit` from numeric to descriptive labels
+
+```{r}
+day$weathersit <- as.character(day$weathersit)
+day$weathersit[day$weathersit == "1"] <- "Good"
+day$weathersit[day$weathersit == "2"] <- "Mist"
+day$weathersit[day$weathersit == "3"] <- "Bad"
+day$weathersit[day$weathersit == "4"] <- "Severe"
+print(unique(day$weathersit))
+```
+
+---
+
+## 🔹 Convert Categorical Variables to Factors
+
+```{r}
+day$season <- as.factor(day$season)
+day$holiday <- as.factor(day$holiday)
+day$workingday <- as.factor(day$workingday)
+day$weathersit <- as.factor(day$weathersit)
+str(day)
+```
+
+---
+
+## 🔹 Build Linear Model (Q13-C)
+
+```{r}
+model_3 <- lm(cnt ~ season + holiday + workingday + weathersit + atemp + hum + windspeed + registered, data = day)
+summary(model_3)
+```
+
+---
+
+## 🔹 Interpretation
+
+### Model Formula (Key Predictors Only):
+
+```
+cnt = 575.19 + 1378.93 × atemp - 363.99 × hum - 637.75 × windspeed + 1.16 × registered
+```
+
+These coefficients show that:
+- `atemp` and `registered` have strong positive relationships with bike count
+- `hum` and `windspeed` negatively affect count
+
+---
+
+## 📈 Conclusion
+
+This model explains 96.5% of the variance (Adjusted R² = 0.9653), making it highly predictive for bike rental demand based on environmental and user-based features.
